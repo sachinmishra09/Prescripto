@@ -8,7 +8,8 @@ export const AppContext = createContext()
 const AppContextProvider = (props) => {
 
     const currencySymbol = '$'
-    const backendUrl = import.meta.env.VITE_BACKEND_URL
+    const backendUrl = "https://prescripto-backend-sk7z.onrender.com"
+    // const backendUrl = import.meta.env.VITE_BACKEND_URL
 
     const [doctors, setDoctors] = useState([])
     const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : false) // whenever we will reload the page so it will check the token from the local storage and if it is available it will save the token in token state variable  // whenever the user will log in or register we will receive the jwt token
