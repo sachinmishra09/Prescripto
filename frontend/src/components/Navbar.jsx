@@ -17,6 +17,10 @@ const Navbar = () => {
     localStorage.removeItem('token')
   }
 
+  const openAdminPortal = () => {
+    window.open('http://localhost:5176', '_blank', 'noopener,noreferrer')
+  }
+
   return (
     <div className='sm:gap-12 flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
       <img onClick={() => navigate('/')} className='w-40 cursor-pointer mx-2 sm:mx-6 md:mx-10' src={assets.logo} alt="" />
@@ -52,7 +56,10 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            : <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block cursor-pointer'>Create Account</button>
+            : <div className='hidden md:flex items-center gap-3'>
+              <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light cursor-pointer'>Create Account</button>
+              <button onClick={openAdminPortal} className='border border-primary text-primary px-5 py-3 rounded-full font-light cursor-pointer'>Doctor/Admin Login</button>
+            </div>
         }
 
         <img onClick={() => setShowMenu(true)} className='w-6 md:hidden' src={assets.menu_icon} alt="" />
@@ -67,6 +74,7 @@ const Navbar = () => {
             <NavLink onClick={() => setShowMenu(false)} to='/doctors'><p className='px-4 py-2 rounded inline-block hover:text-primary transition-all duration-300 cursor-pointer'>ALL DOCTORS</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/about'><p className='px-4 py-2 rounded inline-block hover:text-primary transition-all duration-300 cursor-pointer'>ABOUT</p></NavLink>
             <NavLink onClick={() => setShowMenu(false)} to='/contact'><p className='px-4 py-2 rounded inline-block hover:text-primary transition-all duration-300 cursor-pointer'>CONTACT</p></NavLink>
+            {!token && <button onClick={openAdminPortal} className='mt-4 border border-primary text-primary px-5 py-2 rounded-full text-base font-light cursor-pointer'>Doctor/Admin Login</button>}
           </ul>
         </div>
       </div>
