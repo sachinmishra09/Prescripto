@@ -18,7 +18,7 @@ const Navbar = () => {
   }
 
   const openAdminPortal = () => {
-    window.open('http://localhost:5176', '_blank', 'noopener,noreferrer')
+    window.open('https://prescripto-admin-hqec.onrender.com/', '_blank', 'noopener,noreferrer')
   }
 
   return (
