@@ -10,11 +10,13 @@ const Navbar = () => {
   const { token, setToken, userData } = useContext(AppContext)
 
   const [showMenu, setShowMenu] = useState(false);
+  const [showProfileMenu, setShowProfileMenu] = useState(false);
   // const [token, setToken] = useState(true); // when we have the token means we are logged in else when we do not have token means we are logged out // now we can remove this state variable token as we will get the token from context for authentication
 
   const logout = () => {
     setToken(false)
     localStorage.removeItem('token')
+    setShowProfileMenu(false)
   }
 
   const openAdminPortal = () => {
@@ -45,10 +47,10 @@ const Navbar = () => {
       <div className='flex items gap-4'>
         {
           token && userData
-            ? <div className='flex items-center gap-2 cursor-pointer group relative'>
+            ? <div onClick={() => setShowProfileMenu(!showProfileMenu)} className='flex items-center gap-2 cursor-pointer group relative'>
               <img className='w-8 rounded-full' src={userData.image} alt="" />
               <img className='w-2.5' src={assets.dropdown_icon} alt="" />
-              <div className='absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 hidden group-hover:block'>
+              <div className={`absolute top-0 right-0 pt-14 text-base font-medium text-gray-600 z-20 ${showProfileMenu ? 'block' : 'hidden'} group-hover:block`}>
                 <div className='min-w-48 bg-stone-100 flex flex-col gap-4 p-4'>
                   <p onClick={() => navigate('my-profile')} className='hover:text-primary cursor-pointer'>My Profile</p>
                   <p onClick={() => navigate('my-appointments')} className='hover:text-primary cursor-pointer'>My Appointments</p>
